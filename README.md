@@ -1,0 +1,2 @@
+# repository-template
+Шаблонный репозиторий.
