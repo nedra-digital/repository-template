@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   Prepare:
-    name: Add 3 and 7
+    name: Prepare
     runs-on: ubuntu-latest
     steps:
       - shell: bash
@@ -17,7 +17,7 @@ jobs:
           path: math-homework.txt
 
   Build:
-    name: Multiply by 9
+    name: Build
     needs: Prepare
     runs-on: ubuntu-latest
     steps:
@@ -36,7 +36,7 @@ jobs:
           path: math-homework.txt
 
   Deploy:
-    name: Display results
+    name: Deploy
     needs: Build
     runs-on: ubuntu-latest
     steps:
