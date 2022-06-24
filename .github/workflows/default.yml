@@ -3,7 +3,7 @@ name: Share data between jobs
 on: [push]
 
 jobs:
-  job_1:
+  Prepare:
     name: Add 3 and 7
     runs-on: ubuntu-latest
     steps:
@@ -16,9 +16,9 @@ jobs:
           name: homework
           path: math-homework.txt
 
-  job_2:
+  Build:
     name: Multiply by 9
-    needs: job_1
+    needs: Prepare
     runs-on: ubuntu-latest
     steps:
       - name: Download math result for job 1
@@ -35,9 +35,9 @@ jobs:
           name: homework
           path: math-homework.txt
 
-  job_3:
+  Deploy:
     name: Display results
-    needs: job_2
+    needs: Build
     runs-on: ubuntu-latest
     steps:
       - name: Download math result for job 2
