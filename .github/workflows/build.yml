@@ -1,58 +1,55 @@
-# This is a basic workflow to help you get started with Actions
+name: Main
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   
-  # workflow_call:
-  
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
     env:
       src: ./source
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
     
-      - name: Run read-yaml action
-        id: package-metadata
-        uses: KJ002/read-yaml@main      # You may wish to replace main with a version tag such as '1.6' etc.
-        with:
-          file: './././component.yml'          # File to read from
-          key-path: '["component"]' # Access the runs key then the using key and retuns the value.
-
-      - name: Display read-yaml output
-        run: echo "${{ steps.package-metadata.outputs.data }}"
-        
-      - name: Prepare README.md file
-        uses: cschleiden/replace-tokens@v1.1
-        with:
-          files: '["**/README.md"]'
-        env:
-          PROJECT: MY-PROJECT
-          
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        
-      - name: Enable SemVer 
-        uses: dotnet/nbgv@master
-        id: nbgv
-        
-      - name: Show current version
-        run:  
-          echo ${{steps.nbgv.outputs.SemVer2}} 
+      - name: One
+      - name: Two
+      - name: Three
+      
+  test:
+    env:
+      var1: 111
+      
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: One
+      - name: Two
+      - name: Three
+      
+  deploy:
+    env:
+      var1: 111
+      
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: One
+      - name: Two
+      - name: Three
+  
+  cleanup:
+    env:
+      var1: 111
+      
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: One
+      - name: Two
+      - name: Three
